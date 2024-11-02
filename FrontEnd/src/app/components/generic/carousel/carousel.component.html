@@ -1,0 +1,9 @@
+<div class="relative overflow-hidden max-h-[500px] ml-[10%] mr-[10%]">
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+
+    <div ngxSlickItem *ngFor="let item of imagePaths" class="h-full object-cover">
+      <img src="{{item}}" alt="" class="ml-auto mr-auto w-auto h-full object-cover text-center">
+    </div>
+
+  </ngx-slick-carousel>
+</div>
