@@ -31,20 +31,5 @@ hr {
   opacity: 1;
 }
 
-.font {
-  font-family: 'Merriweather Sans', serif;
-}
 
-.carousel {
-  position: relative;
-  overflow: hidden;
-  display: block;
-  width: 100%;
-}
 
-ngx-slick-carousel {
-  position: relative; /* Necessário para o posicionamento absoluto das setas */
-  padding-left: 3%;  /* Ajusta para dar espaço para a seta da esquerda */
-  padding-right: 3%; /* Ajusta para dar espaço para a seta da direita */
-
-}

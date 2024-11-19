@@ -1,0 +1,26 @@
+<main>
+  <div class="w-auto pb-10 px-3">
+    <div (mouseenter)="hoveredImageId = product.id" (mouseleave)="hoveredImageId = null" class="image-container">
+
+      <img [src]="getImagePath(product.imagens, false, product.id)" alt="Imagem do produto"
+        class="rounded-sm object-cover transition-opacity duration-300"
+        [ngClass]="{ 'opacity-100': hoveredImageId !== product.id, 'opacity-0': hoveredImageId === product.id }" />
+
+      <img [src]="getImagePath(product.imagens, true, product.id)" alt="Imagem do produto"
+        class="rounded-sm object-cover transition-opacity duration-300"
+        [ngClass]="{ 'opacity-0': hoveredImageId !== product.id, 'opacity-100': hoveredImageId === product.id }" />
+
+    </div>
+
+    <div class="flex justify-center flex-col products-center mt-4">
+      <h2 class="text-md">{{ product.name }}</h2>
+      <p class="font-medium text-2xl mt-3">R${{ product.price }}</p>
+      <hr class="my-2">
+      <p class="text-sm">Ou em {{product.parceladoPrice}} sem juros</p>
+
+      <button class="uppercase bg-color w-full mt-4 p-3 text-white rounded-sm font-bold">
+        Comprar Agora
+      </button>
+    </div>
+  </div>
+</main>

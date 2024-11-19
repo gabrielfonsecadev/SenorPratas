@@ -17,23 +17,28 @@ export class CarouselComponent {
   currentIndex: number = 0;
 
   imagePaths = [
-    'https://www.pontotel.com.br/local/wp-content/uploads/2022/05/imagem-corporativa.webp',
-    'https://www.pontotel.com.br/local/wp-content/uploads/2022/05/imagem-corporativa-o-que-e-imagem-corporativa.webp',
-    'https://www.pontotel.com.br/local/wp-content/uploads/2022/05/imagem-corporativa-quais-sao-as-vantagens-de-ter-uma-boa-imagem-corporativa.webp',
+    'https://www.pratafina.com.br/upload/banner/9e167a3f8964facdd4d1225f184cdccd.webp',
+    'https://www.pratafina.com.br/upload/banner/392d1247a4652c3b93307402a64f8a14.webp',
+    'https://www.pratafina.com.br/upload/banner/667868e657c130882ffacb3551bb50b8.webp',
   ];
 
-  slideConfig = [{
-    "slidesToShow": this.imagePaths.length,
-    "slidesToScroll": this.imagePaths.length,
-    "autoplay": true,
-    "autoplaySpeed": 2000,
-    "pauseOnHover": true,
-    "infinite": true,
-    "arrows": true
-  }];
+  slideConfig = {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    infinite: true,
+    arrows: false,
+  };
+
 
   constructor() {
 
+  }
+
+  ngOnInit() {
+    console.log(this.imagePaths.length)
   }
 
   nextImage() {

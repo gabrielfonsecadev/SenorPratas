@@ -1,4 +1,12 @@
-.slick-prev:before, .slick-next:before {
-  color: #161616;
+.carousel {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
 }
 
+.carousel img {
+  object-fit: contain; /* Garante que a imagem inteira seja exibida */
+  height: 100%;       /* Ajusta a altura ao contêiner */
+  width: 100%;        /* Ajusta a largura ao contêiner */
+}

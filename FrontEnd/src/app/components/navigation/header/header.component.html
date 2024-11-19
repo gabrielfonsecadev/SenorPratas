@@ -1,9 +1,11 @@
-<main>
-  <section class="flex justify-center bg-color text-white">
-    <p class="py-2"><span class="font-medium uppercase">FRETE GRÁTIS </span>em compras a partir de R$250,00</p>
+<main class="sticky top-0 z-50 bg-white pb-5">
+  <section class="flex justify-center bg-color text-white"
+    [ngClass]="{ 'opacity-0 py-0': isScrolled, 'opacity-100 py-2': !isScrolled }">
+    <p class=""><span class="font-medium uppercase">FRETE GRÁTIS </span>em compras a partir de R$250,00</p>
   </section>
   <section class="">
-    <div class="flex flex-col justify-center pt-14 px-12 md:px-24">
+    <div class="flex flex-col justify-center px-12 md:px-24"
+    [ngClass]="{ 'pt-0 out-animation': isScrolled, 'pt-10 in-animation': !isScrolled }">
       <h1 class="flex justify-center text-4xl font-medium">
         Mister das Pratas
       </h1>
@@ -54,7 +56,8 @@
   </section>
 
   <section>
-    <ul class="flex uppercase justify-evenly pt-7">
+    <ul class="flex uppercase justify-evenly"
+    [ngClass]="{ 'pt-3 out-animation': isScrolled, 'pt-5 in-animation': !isScrolled }">
       <li><a href="">Correntes</a></li>
       <li><a href="">Escapulários</a></li>
       <li><a href="">Brincos</a></li>
