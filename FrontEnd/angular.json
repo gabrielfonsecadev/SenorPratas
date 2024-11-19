@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MisterDasPratas2": {
+    "MisterDasPratas": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "MisterDasPratas2:build:production"
+              "buildTarget": "MisterDasPratas:build:production"
             },
             "development": {
-              "buildTarget": "MisterDasPratas2:build:development"
+              "buildTarget": "MisterDasPratas:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -108,6 +108,9 @@
               "node_modules/slick-carousel/slick/slick.min.js"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }
