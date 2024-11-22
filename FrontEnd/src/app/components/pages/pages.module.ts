@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CarouselComponent } from '../generic/carousel/carousel.component';
 import { ProductCardComponent } from '../generic/product-card/product-card.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -11,7 +12,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     CommonModule,
     CarouselComponent,
     ProductCardComponent,
-    SlickCarouselModule
+    SlickCarouselModule,
+    HttpClientModule
   ]
 })
 export class PagesModule { }

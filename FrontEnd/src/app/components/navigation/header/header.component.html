@@ -1,11 +1,11 @@
-<main class="sticky top-0 z-50 bg-white pb-5">
+<main class="sticky top-0 z-50 bg-white pb-4 shadow-sm">
   <section class="flex justify-center bg-color text-white"
     [ngClass]="{ 'opacity-0 py-0': isScrolled, 'opacity-100 py-2': !isScrolled }">
     <p class=""><span class="font-medium uppercase">FRETE GRÁTIS </span>em compras a partir de R$250,00</p>
   </section>
   <section class="">
     <div class="flex flex-col justify-center px-12 md:px-24"
-    [ngClass]="{ 'pt-0 out-animation': isScrolled, 'pt-10 in-animation': !isScrolled }">
+      [ngClass]="{ 'pt-0 out-animation': isScrolled, 'pt-10 in-animation': !isScrolled }">
       <h1 class="flex justify-center text-4xl font-medium">
         Mister das Pratas
       </h1>
@@ -57,15 +57,28 @@
 
   <section>
     <ul class="flex uppercase justify-evenly"
-    [ngClass]="{ 'pt-3 out-animation': isScrolled, 'pt-5 in-animation': !isScrolled }">
-      <li><a href="">Correntes</a></li>
-      <li><a href="">Escapulários</a></li>
+      [ngClass]="{ 'pt-3 out-animation': isScrolled, 'pt-5 in-animation': !isScrolled }">
+
+      <li id="correntes"><a href="">Correntes</a>
+        <ul id="menuCorrentes" class="menuContainer">
+          <li class="pb-3"><a href="">Masculinas</a></li>
+          <li><a href="">Femininas</a></li>
+        </ul>
+      </li>
+
       <li><a href="">Brincos</a></li>
       <li><a href="">Colares</a></li>
       <li><a href="">Pulseiras</a></li>
       <li><a href="">Pingentes</a></li>
       <li><a href="">Conjuntos</a></li>
       <li><a href="">Anéis</a></li>
+
+      <li id="escapularios"><a href="">Escapulários</a>
+        <ul id="menuEscapularios" class="menuContainer">
+          <li class="pb-2"><a href="">Cruz</a></li>
+          <li><a href="">Redondos</a></li>
+        </ul>
+      </li>
     </ul>
   </section>
 </main>
