@@ -13,7 +13,7 @@
       <ngx-slick-carousel class="flex flex-wrap justify-evenly" #slickModal="slick-carousel" [config]="slideConfig">
 
         <div ngxSlickItem *ngFor="let item of getNovidades()">
-          <app-product-card [product]="item"></app-product-card>
+          <app-product-card [product]="item" [type]="'carousel'"></app-product-card>
         </div>
 
       </ngx-slick-carousel>

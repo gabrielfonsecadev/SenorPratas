@@ -1,1 +1,5 @@
-<p>collections works!</p>
+<section class="grid grid-cols-4 gap-0">
+  <div *ngFor="let item of products">
+    <app-product-card [product]="item"></app-product-card>
+  </div>
+</section>

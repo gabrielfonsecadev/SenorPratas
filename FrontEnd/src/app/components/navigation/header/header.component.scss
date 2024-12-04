@@ -10,6 +10,14 @@
   transition: all 0.3s ease-out;
 }
 
+.in-frete {
+  transition: all 0.1s ease-in-out;
+}
+
+.out-frete {
+  transition: all 0.1s ease-out;
+}
+
 .menuContainer {
   border-radius: 0 0 2.5px 2.5px;
   transform: translateY(15px);

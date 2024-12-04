@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductCardComponent {
   @Input() product: any;
+  @Input() type: any;
   hover: boolean = false;
   hoveredImageId: number | null = null;
 

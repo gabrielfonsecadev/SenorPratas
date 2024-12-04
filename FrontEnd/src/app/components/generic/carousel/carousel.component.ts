@@ -19,7 +19,7 @@ export class CarouselComponent {
   imagePaths = [
     'https://www.pratafina.com.br/upload/banner/9e167a3f8964facdd4d1225f184cdccd.webp',
     'https://www.pratafina.com.br/upload/banner/392d1247a4652c3b93307402a64f8a14.webp',
-    'https://www.pratafina.com.br/upload/banner/667868e657c130882ffacb3551bb50b8.webp',
+    'https://www.pratafina.com.br/upload/banner/503bed81e336801a58990590267971e0.webp',
   ];
 
   slideConfig = {

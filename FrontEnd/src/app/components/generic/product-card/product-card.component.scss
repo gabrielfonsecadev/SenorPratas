@@ -9,19 +9,18 @@ hr {
 .image-container {
   position: relative;
   width: 100%;
-  height: 300px;
+  aspect-ratio: 3 / 3.3;
   overflow: hidden;
 }
 
 .image-container img {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: opacity 0.3s ease-in-out;
 }
+
 
 .image-container img.opacity-0 {
   opacity: 0;
@@ -31,5 +30,19 @@ hr {
   opacity: 1;
 }
 
+.card-size {
+  width: 350px;
+}
 
+@media (max-width: 1280px) {
+  .card-size {
+    width: 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .card-size {
+    width: 250px;
+  }
+}
 
