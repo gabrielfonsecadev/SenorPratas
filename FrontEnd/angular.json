@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SenorPratas": {
+    "MisterDasPratas": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,7 +18,7 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist",
-            "baseHref": "/SenorPratas/",
+            "baseHref": "/MisterDasPratas/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "SenorPratas:build:production"
+              "buildTarget": "MisterDasPratas:build:production"
             },
             "development": {
-              "buildTarget": "SenorPratas:build:development"
+              "buildTarget": "MisterDasPratas:build:development"
             }
           },
           "defaultConfiguration": "development"

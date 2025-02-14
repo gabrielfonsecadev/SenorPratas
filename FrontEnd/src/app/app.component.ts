@@ -17,5 +17,5 @@ import { PagesModule } from './components/pages/pages.module';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'SenorPratas';
+  title = 'MisterDasPratas2';
 }

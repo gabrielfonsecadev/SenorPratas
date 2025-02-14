@@ -2741,11 +2741,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\SenorPratas\\Core\\API\\Pratas.csproj",
+      "projectUniqueName": "C:\\Projetos\\MisterDasPratas\\BackEnd\\API\\Pratas.csproj",
       "projectName": "Pratas",
-      "projectPath": "C:\\Projetos\\SenorPratas\\Core\\API\\Pratas.csproj",
+      "projectPath": "C:\\Projetos\\MisterDasPratas\\BackEnd\\API\\Pratas.csproj",
       "packagesPath": "C:\\Users\\Administrador\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\SenorPratas\\Core\\API\\obj\\",
+      "outputPath": "C:\\Projetos\\MisterDasPratas\\BackEnd\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
