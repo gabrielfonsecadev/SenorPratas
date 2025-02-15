@@ -2,7 +2,9 @@ using System.Collections;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pratas.Context;
+using Pratas.Dtos;
 using Pratas.Models;
+using Pratas.Services;
 
 namespace Pratas.Controllers;
 
@@ -11,19 +13,22 @@ namespace Pratas.Controllers;
 public class ProdutosController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IProdutoService _produtoService;
 
-    public ProdutosController(AppDbContext context)
+    public ProdutosController(AppDbContext context, IProdutoService produtoService)
     {
         _context = context;
+        _produtoService = produtoService;
     }
 
     //C.R.U.D
     [HttpGet]
-    public async Task<ActionResult<List<Produto>>> List()
+    public async Task<ActionResult<List<ProdutoDto>>> List()
     {
         var produto = await _context.Produto
             .AsNoTracking()
             .Include(p => p.Categoria)
+            .Include(p => p.Collection)
             .ToListAsync();
 
         if (produto == null) return NotFound();
@@ -32,33 +37,35 @@ public class ProdutosController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Produto>> Get(int id)
+    public async Task<ActionResult<ProdutoDto>> Get(int id)
     {
         if (id == 0) return BadRequest();
 
         var produto = await _context.Produto
             .AsNoTracking()
             .Include(p => p.Categoria)
+            .Include(p => p.Collection)
             .FirstOrDefaultAsync(p => p.Id == id);
 
         if (produto == null) return NotFound();
+
+        var images = await _context.ImagemProduto
+            .AsNoTracking()
+            .Where(i => i.ProdutoId == produto.Id)
+            .ToListAsync();
+
+        if (images != null)
+        {
+            produto.Imagens = images;
+        }
 
         return Ok(produto);
     }
 
     [HttpPost]
-    public async Task<ActionResult<Produto>> Post(Produto produto)
+    public async Task<ActionResult<ProdutoForInsertDto>> Post(ProdutoForInsertDto produtoDto)
     {
-        _context.Produto.Add(produto);
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-
+        var produto = await _produtoService.Post(produtoDto);
         return CreatedAtAction(nameof(Post), new { id = produto.Id }, produto);
     }
 

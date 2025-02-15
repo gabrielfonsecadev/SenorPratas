@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Pratas.Context;
 using Pratas.Models;
+using Pratas.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,29 @@ builder.Services.AddSwaggerGen();
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
 
+builder.Services.AddCors(options =>
+{
+    //APENAS PARA AMBIENTE DEV!!!
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+
+        // //AMBIENTE DE PRODUÇÃO EXEMPLO:
+        // policy.WithOrigins("https://seusite.com", "http://localhost:3000")
+        //       .WithMethods("GET", "POST", "PUT")
+        //       .AllowCredentials();
+    });
+});
+
+//Services
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
+
+
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

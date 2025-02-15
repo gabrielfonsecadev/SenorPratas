@@ -12,4 +12,6 @@ public class AppDbContext : DbContext
 
     public DbSet<Categoria> Categoria { get; set; }
     public DbSet<Produto> Produto { get; set; }
+    public DbSet<Collection> Collection { get; set; }
+    public DbSet<ImagemProduto> ImagemProduto { get; set; }
 }

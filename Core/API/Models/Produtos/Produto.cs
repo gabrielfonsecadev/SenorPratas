@@ -11,8 +11,14 @@ namespace Pratas.Models
         public string Nome { get; set; }
         [Required]
         public decimal Preco { get; set; }
+        public string? PrecoParcelado { get; set; }
+        public string? Tamanhos { get; set; }
         [ForeignKey("Categoria")]
         public int? CategoriaId { get; set; }
         public Categoria? Categoria { get; set; }
+        [ForeignKey("Collection")]
+        public int? CollectionId { get; set; }
+        public Collection? Collection { get; set; }
+        public List<ImagemProduto> Imagens { get; set; } = new();
     }
 }

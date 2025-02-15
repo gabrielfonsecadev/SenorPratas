@@ -1,20 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   products: any;
   hover: boolean = false;
   hoveredImageId: number | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private _productsService: ProductsService
+  ) { }
 
   ngOnInit() {
+    console.log('HomeComponent');
     this.loadProducts();
+    this.getProducts();
   }
 
   loadProducts(): void {
@@ -65,5 +70,12 @@ export class HomeComponent {
     });
 
     return sortedProducts;
+  }
+
+  getProducts() {
+    this._productsService.get().subscribe((response: any) => {
+      // this.products = response;
+      console.log(response);
+    });
   }
 }
