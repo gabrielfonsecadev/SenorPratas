@@ -21,12 +21,12 @@ export class ProductCardComponent {
 
   getImagePath(imagens: any, isHover: boolean, id: number): string {
     if (isHover) {
-      const hoverImage = imagens.find((img: any) => img.order === 2);
-      return hoverImage ? hoverImage.imagePath : '';
+      const hoverImage = imagens.find((img: any) => img.ordem === 2);
+      return hoverImage ? hoverImage.url : '';
     }
     else {
-      const coverImage = imagens.find((img: any) => img.order === 1);
-      return coverImage ? coverImage.imagePath : '';
+      const coverImage = imagens.find((img: any) => img.ordem === 1);
+      return coverImage ? coverImage.url : '';
     }
   }
 }

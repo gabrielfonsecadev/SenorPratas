@@ -13,10 +13,11 @@
   </div>
 
   <div class="flex justify-center flex-col products-center mt-4">
-    <h2 class="text-md h-9">{{ product.name }}</h2>
-    <p class="font-medium text-2xl mt-3">R${{ product.price }}</p>
+    <h2 class="text-md h-9">{{ product.nome }}</h2>
+    <p class="font-medium text-2xl mt-3">R${{ product.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2,
+      maximumFractionDigits: 2 }) }}</p>
     <hr class="my-2">
-    <p class="text-sm">Ou em {{product.parceladoPrice}} sem juros</p>
+    <p class="text-sm">Ou em {{product.precoParcelado}} sem juros</p>
 
     <button class="uppercase bg-color w-full mt-4 p-3 text-white rounded-sm font-bold">
       Comprar Agora

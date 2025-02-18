@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,7 @@ import { Component, HostListener } from '@angular/core';
 })
 export class HeaderComponent {
   isScrolled: boolean = false;
+  isSearchVisible = false;
 
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -14,7 +16,17 @@ export class HeaderComponent {
     this.isScrolled = scrollTop > 0, 1;
   }
 
-  constructor() {
+  constructor(private router: Router) {
 
+  }
+
+  toggleSearch() {
+    this.isSearchVisible = !this.isSearchVisible; // Alterna entre true e false
+  }
+
+  search(term: any) {
+    this.router.navigate(['/search'], {
+      queryParams: { q: term.value }
+    });
   }
 }

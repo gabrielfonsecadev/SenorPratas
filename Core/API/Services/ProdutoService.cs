@@ -8,7 +8,8 @@ namespace Pratas.Services
 {
     public interface IProdutoService
     {
-        Task<Produto> Post(ProdutoForInsertDto produtoDto);
+        Task<Produto> Post(Produto produto);
+        Task<Produto> Put(Produto produto);
     }
     public class ProdutoService : IProdutoService
     {
@@ -18,19 +19,25 @@ namespace Pratas.Services
         {
             _context = context;
         }
-        public async Task<Produto> Post(ProdutoForInsertDto produtoDto)
+        public async Task<Produto> Post(Produto produto)
         {
-            var produto = new Produto
-            {
-                Nome = produtoDto.Nome,
-                Preco = produtoDto.Preco,
-                Tamanhos = produtoDto.Tamanhos,
-                CategoriaId = produtoDto.CategoriaId ?? null,
-                CollectionId = produtoDto.CollectionId ?? null,
-                PrecoParcelado = PrecoParcelado(produtoDto.Preco)
-            };
-
             _context.Produto.Add(produto);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao salvar o produto: " + ex.Message);
+            }
+
+            return produto;
+        }
+
+        public async Task<Produto> Put(Produto produto)
+        {
+            produto.PrecoParcelado = PrecoParcelado(produto.Preco);
+            _context.Entry(produto).State = EntityState.Modified;
             try
             {
                 await _context.SaveChangesAsync();

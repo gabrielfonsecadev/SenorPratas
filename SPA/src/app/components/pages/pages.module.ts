@@ -6,18 +6,22 @@ import { CarouselComponent } from '../generic/carousel/carousel.component';
 import { ProductCardComponent } from '../generic/product-card/product-card.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchPageComponent } from './search-page/search-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    SearchPageComponent
   ],
   imports: [
     CommonModule,
     CarouselComponent,
     ProductCardComponent,
     SlickCarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ]
 })
 export class PagesModule { }

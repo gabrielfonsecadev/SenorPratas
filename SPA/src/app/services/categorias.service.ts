@@ -7,13 +7,13 @@ import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
+export class CategoriasService {
   baseUrl: string = environment.apiUrl;
 
   constructor(private _httpClient: HttpClient) { }
 
   get() {
-    return this._httpClient.get(`${this.baseUrl}produtos/Produtos`).pipe(
+    return this._httpClient.get(`${this.baseUrl}produtos/Categorias`).pipe(
       catchError(error => {
         console.error(error);
         return throwError(() => new Error(error));

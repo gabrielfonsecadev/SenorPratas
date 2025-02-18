@@ -35,12 +35,19 @@ public class ImagemProdutoController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<ImagemProdutoForInsertDto>> Post(ImagemProdutoForInsertDto imgProduto)
     {
+        var base64Image = imgProduto.Url;
+        if (!imgProduto.Url.StartsWith("data:image/png;base64,"))
+        {
+            base64Image = "data:image/png;base64," + imgProduto.Url;
+        }
+
         var imagemProduto = new ImagemProduto
         {
             ProdutoId = imgProduto.ProdutoId,
-            Url = imgProduto.Url,
+            Url = base64Image,
             Ordem = imgProduto.Ordem
         };
+
         _context.ImagemProduto.Add(imagemProduto);
         try
         {

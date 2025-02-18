@@ -1,1 +1,53 @@
-<p>search-page works!</p>
+<main class="container mx-auto px-4">
+  <div class="flex flex-col md:flex-row gap-8 mt-8">
+    <!-- Filtros -->
+    <aside class="w-full md:w-64 space-y-6">
+      <div>
+        <h3 class="font-semibold mb-2">Categoria</h3>
+        <select class="w-full p-2 border rounded" [(ngModel)]="selectedCategory">
+          <option value="">Todas</option>
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-2">Gênero</h3>
+        <select class="w-full p-2 border rounded" [(ngModel)]="selectedGender">
+          <option value="">Todos</option>
+          <option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <h3 class="font-semibold mb-2">Preço</h3>
+        <input type="range" class="w-full" min="0" [max]="maxPrice" [(ngModel)]="selectedPrice" (input)="filterPrice()">
+        <div class="text-center">Até R$
+          <input [value]="selectedPrice" [(ngModel)]="selectedPrice" class="max-w-[60px] m-0 p-0"
+            (input)="filterPrice()" (keyup.enter)="onEnterBlur($event)">
+        </div>
+      </div>
+    </aside>
+
+    <!-- Resultados -->
+    <div class="flex-1">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold">Resultados da Busca</h2>
+        <select class="p-2 border rounded" [(ngModel)]="sortBy" (change)="sortProducts()">
+          <option value="relevance">Relevância</option>
+          <option value="priceAsc">Preço: Menor para Maior</option>
+          <option value="priceDesc">Preço: Maior para Menor</option>
+          <option value="newest">Mais Recentes</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <app-product-card *ngFor="let product of filteredProducts" [product]="product">
+        </app-product-card>
+      </div>
+    </div>
+  </div>
+</main>

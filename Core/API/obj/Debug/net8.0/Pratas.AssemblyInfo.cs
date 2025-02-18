@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Pratas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03b72bf734f955952b3988e4af999aeb65d9b516")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7195e48e4e2273a1638aaaaa8d1fd187aa3de818")]
 [assembly: System.Reflection.AssemblyProductAttribute("Pratas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Pratas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

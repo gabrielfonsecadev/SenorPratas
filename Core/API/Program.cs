@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Pratas.Context;
 using Pratas.Models;
 using Pratas.Services;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,8 @@ builder.Services.AddCors(options =>
         //       .AllowCredentials();
     });
 });
+
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
 //Services
 builder.Services.AddScoped<IProdutoService, ProdutoService>();

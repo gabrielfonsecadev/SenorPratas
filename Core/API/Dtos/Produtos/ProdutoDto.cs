@@ -27,4 +27,14 @@ namespace Pratas.Dtos
         public int? CategoriaId { get; set; }
         public int? CollectionId { get; set; }
     }
+    public class ProdutoForUpdateDto
+    {
+        [Required]
+        public int Id { get; set; }
+        public string? Nome { get; set; }
+        public decimal? Preco { get; set; }
+        public string? Tamanhos { get; set; }
+        public int? CategoriaId { get; set; }
+        public int? CollectionId { get; set; }
+    }
 }
