@@ -25,3 +25,16 @@ app-root {
 .content {
   flex: 1;
 }
+
+.universalContainer {
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+@media (max-width: 1280px) {
+  .universalContainer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+

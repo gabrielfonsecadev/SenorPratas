@@ -117,5 +117,60 @@ public class ProdutosController : ControllerBase
 
 
     //Other Methods
+    [HttpGet("novidades")]
+    public async Task<ActionResult<List<ProdutoDto>>> ListNovidades()
+    {
+        var produtos = await _context.Produto
+            .AsNoTracking()
+            .Include(p => p.Categoria)
+            .Include(p => p.Collection)
+            .OrderByDescending(p => p.DtUpload)
+            .Take(10)
+            .ToListAsync();
 
+        if (produtos == null || !produtos.Any()) return NotFound();
+
+        // Associar apenas as imagens com ordem 1 ou 2 a cada produto
+        foreach (var produto in produtos)
+        {
+            produto.Imagens = await _context.ImagemProduto
+                .AsNoTracking()
+                .Where(i => i.ProdutoId == produto.Id && (i.Ordem == 1 || i.Ordem == 2))
+                .OrderBy(i => i.Ordem)
+                .ToListAsync();
+        }
+
+        return Ok(produtos);
+    }
+
+    [HttpGet("collections/{collectionName}/{categoryName?}")]
+    public async Task<ActionResult<List<ProdutoDto>>> ListCollections(string collectionName, string? categoryName)
+    {
+        var produtosQuery = _context.Produto
+            .AsNoTracking()
+            .Include(p => p.Categoria)
+            .Include(p => p.Collection)
+            .Where(p => p.Collection.Nome.ToLower() == collectionName);
+
+        if (!string.IsNullOrEmpty(categoryName))
+        {
+            produtosQuery = produtosQuery.Where(p => p.Categoria.Nome.ToLower() == categoryName);
+        }
+
+        var produtos = await produtosQuery.ToListAsync();
+
+        if (produtos == null || !produtos.Any()) return NotFound("Nenhum produto encontrado.");
+
+        // Associar apenas as imagens com ordem 1 ou 2 a cada produto
+        foreach (var produto in produtos)
+        {
+            produto.Imagens = await _context.ImagemProduto
+                .AsNoTracking()
+                .Where(i => i.ProdutoId == produto.Id && (i.Ordem == 1 || i.Ordem == 2))
+                .OrderBy(i => i.Ordem)
+                .ToListAsync();
+        }
+
+        return Ok(produtos);
+    }
 }

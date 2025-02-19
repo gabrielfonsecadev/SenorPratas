@@ -28,7 +28,8 @@
   text-transform: none;
 }
 
-#menuCorrentes, #menuEscapularios {
+
+.subItensContainer {
   opacity: 0;
   position: absolute;
   visibility: hidden;
@@ -36,16 +37,8 @@
   transition: all 0.3s ease-out;
 }
 
-#correntes:hover {
-  #menuCorrentes {
-    transition: all 0.3s ease-in-out;
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-#escapularios:hover {
-  #menuEscapularios {
+.itensContainer:hover {
+  .subItensContainer {
     transition: all 0.3s ease-in-out;
     opacity: 1;
     visibility: visible;

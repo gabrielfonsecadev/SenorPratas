@@ -5,6 +5,18 @@ import { SearchPageComponent } from './components/pages/search-page/search-page.
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'collections/:category', component: CollectionsComponent },
+  {
+    path: 'collections',
+    children: [
+      {
+        path: ':collection',
+        component: CollectionsComponent,
+      },
+      {
+        path: ':collection/:category',
+        component: CollectionsComponent,
+      }
+    ]
+  },
   { path: 'search', component: SearchPageComponent },
 ];

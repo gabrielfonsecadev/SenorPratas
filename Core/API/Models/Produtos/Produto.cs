@@ -12,6 +12,7 @@ namespace Pratas.Models
         [Required]
         public decimal Preco { get; set; }
         public string? PrecoParcelado { get; set; }
+        public DateTime DtUpload { get; set; }
         public string? Tamanhos { get; set; }
         [ForeignKey("Categoria")]
         public int? CategoriaId { get; set; }

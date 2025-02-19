@@ -9,6 +9,7 @@ import { ProductsService } from '../../../services/products.service';
 })
 export class HomeComponent implements OnInit {
   products: any;
+  novidades: any;
   hover: boolean = false;
   hoveredImageId: number | null = null;
 
@@ -17,20 +18,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('HomeComponent');
-    this.loadProducts();
     this.getProducts();
-  }
-
-  loadProducts(): void {
-    this.http.get('assets/data/products.json').subscribe((response) => {
-      console.log(response)
-      this.products = response;
-    },
-      (error) => {
-        console.error('Erro ao carregar o arquivo JSON:', error);
-      }
-    );
+    this.getNovidades();
   }
 
   slideConfig = {
@@ -62,20 +51,14 @@ export class HomeComponent implements OnInit {
   };
 
   getNovidades() {
-    const sortedProducts = [...this.products];
-    sortedProducts.sort((a, b) => {
-      const dateA = new Date(a.uploadDate).getTime();
-      const dateB = new Date(b.uploadDate).getTime();
-      return dateB - dateA;
+    this._productsService.listNovidades().subscribe((response: any) => {
+      this.novidades = response;
     });
-
-    return sortedProducts;
   }
 
   getProducts() {
-    this._productsService.get().subscribe((response: any) => {
-      // this.products = response;
-      console.log(response);
+    this._productsService.list().subscribe((response: any) => {
+      this.products = response;
     });
   }
 }

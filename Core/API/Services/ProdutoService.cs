@@ -21,6 +21,8 @@ namespace Pratas.Services
         }
         public async Task<Produto> Post(Produto produto)
         {
+            produto.DtUpload = DateTime.Now;
+            produto.PrecoParcelado = PrecoParcelado(produto.Preco);
             _context.Produto.Add(produto);
             try
             {

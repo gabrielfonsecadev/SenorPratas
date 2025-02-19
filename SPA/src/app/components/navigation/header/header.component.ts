@@ -13,7 +13,7 @@ export class HeaderComponent {
   @HostListener('window:scroll', [])
   onScroll(): void {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    this.isScrolled = scrollTop > 0, 1;
+    this.isScrolled = scrollTop > 0, 0.1;
   }
 
   constructor(private router: Router) {

@@ -9,6 +9,7 @@ namespace Pratas.Dtos
         public string Nome { get; set; }
         public decimal Preco { get; set; }
         public string? PrecoParcelado { get; set; }
+        public DateTime DtUpload { get; set; }
         public string? Tamanhos { get; set; }
         public int? CategoriaId { get; set; }
         public CategoriaDto? Categoria { get; set; }
@@ -34,6 +35,7 @@ namespace Pratas.Dtos
         public string? Nome { get; set; }
         public decimal? Preco { get; set; }
         public string? Tamanhos { get; set; }
+        public DateTime DtUpload { get; set; }
         public int? CategoriaId { get; set; }
         public int? CollectionId { get; set; }
     }

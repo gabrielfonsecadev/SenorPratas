@@ -8,12 +8,31 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductsService {
-  baseUrl: string = environment.apiUrl;
+  baseUrl: string = `${environment.apiUrl}produtos/Produtos`;
 
   constructor(private _httpClient: HttpClient) { }
 
-  get() {
-    return this._httpClient.get(`${this.baseUrl}produtos/Produtos`).pipe(
+  list() {
+    return this._httpClient.get(`${this.baseUrl}`).pipe(
+      catchError(error => {
+        console.error(error);
+        return throwError(() => new Error(error));
+      })
+    );
+  }
+
+  listNovidades() {
+    return this._httpClient.get(`${this.baseUrl}/novidades`).pipe(
+      catchError(error => {
+        console.error(error);
+        return throwError(() => new Error(error));
+      })
+    );
+  }
+
+  listCollections(collectionName: string, categoryName?: string) {
+    const rota = categoryName ? `${collectionName}/${categoryName}` : collectionName;
+    return this._httpClient.get(`${this.baseUrl}/collections/${rota}`).pipe(
       catchError(error => {
         console.error(error);
         return throwError(() => new Error(error));

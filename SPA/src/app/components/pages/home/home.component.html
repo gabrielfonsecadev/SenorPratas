@@ -3,7 +3,7 @@
     <app-carousel></app-carousel>
   </section>
 
-  <section class="container m-auto">
+  <section class="universalContainer m-auto">
     <article class="mt-20 mb-20">
       <p class="text-center text-xl font-bold font uppercase">
         Novidades
@@ -12,9 +12,11 @@
 
       <ngx-slick-carousel class="flex flex-wrap justify-evenly" #slickModal="slick-carousel" [config]="slideConfig">
 
-        <div ngxSlickItem *ngFor="let item of getNovidades()">
-          <app-product-card [product]="item" [type]="'carousel'"></app-product-card>
-        </div>
+        <ng-container *ngFor="let item of novidades">
+          <div ngxSlickItem *ngIf="item && item.imagens.length > 0">
+            <app-product-card [product]="item" [type]="'carousel'"></app-product-card>
+          </div>
+        </ng-container>
 
       </ngx-slick-carousel>
 

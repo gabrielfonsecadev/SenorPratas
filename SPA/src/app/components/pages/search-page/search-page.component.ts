@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchPageComponent {
   allProducts: any[] = [];
-  filteredProducts: any;
+  filteredProducts: any[] = [];
   searchQuery: string = '';
 
   // Filtros
@@ -40,14 +40,14 @@ export class SearchPageComponent {
   }
 
   private loadProducts() {
-    this.productsService.get().subscribe(res => {
+    this.productsService.list().subscribe(res => {
       this.allProducts = res as [];
-      this.calculateMaxPrice(res as []);
 
       this.route.queryParamMap.subscribe(params => {
         this.searchQuery = params.get('q') || '';
         this.applyFilters();
         this.sortProducts();
+        this.calculateMaxPrice(this.allProducts);
       });
     });
   }
@@ -97,6 +97,8 @@ export class SearchPageComponent {
         const searchWords = lowerSearch.split(" ");
         return searchWords.some(word => productName.includes(word));
       });
+
+      this.allProducts = this.filteredProducts;
     }
   }
 
@@ -111,7 +113,7 @@ export class SearchPageComponent {
         return this.filteredProducts = products.sort((a, b) => b.preco - a.preco);
       case 'newest':
         return this.filteredProducts = products.sort((a, b) =>
-          new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime());
+          new Date(b.dtUpload).getTime() - new Date(a.dtUpload).getTime());
       case 'relevance':
         return this.filteredProducts = this.sortByRelevance(products);
       default:
