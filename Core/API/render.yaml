@@ -1,0 +1,10 @@
+services:
+  - name: meu-backend
+    type: web
+    runtime: docker
+    rootDir: Back-End
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        sync: false
