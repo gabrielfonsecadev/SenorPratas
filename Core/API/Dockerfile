@@ -13,8 +13,8 @@ WORKDIR /app
 COPY --from=build /out .
 
 # Expõe a porta padrão do ASP.NET
-EXPOSE $PORT
-ENV ASPNETCORE_URLS=http://+:${PORT}
+EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
 
 # Comando para iniciar a aplicação
 CMD ["dotnet", "Pratas.dll"]

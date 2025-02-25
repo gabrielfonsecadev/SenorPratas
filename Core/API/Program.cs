@@ -21,16 +21,21 @@ builder.Services.AddCors(options =>
     //APENAS PARA AMBIENTE DEV!!!
     options.AddPolicy("AllowAll", policy =>
     {
-        // if(builder.Environment.IsDevelopment()) {
+        if(builder.Environment.IsDevelopment()) {
             policy.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
-        // }
-        // else {
-        //     policy.WithOrigins("https://senorpratas.onrender.com")
-        //         .WithMethods("GET", "POST", "PUT")
-        //         .AllowCredentials();
-        // }
+        }
+        else {
+            // var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+            // builder.WebHost.UseUrls($"http://*:{port}");
+
+            policy.WithOrigins("https://senorpratas.onrender.com")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+                // .WithMethods("GET", "POST", "PUT", "DELETE")
+                // .AllowCredentials();
+        }
     });
 });
 
@@ -43,9 +48,6 @@ builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables();
-
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://*:{port}");
 
 
 var app = builder.Build();

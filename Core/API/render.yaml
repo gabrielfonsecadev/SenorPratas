@@ -4,7 +4,10 @@ services:
     runtime: docker
     rootDir: Core/API
     envVars:
-      - key: ASPNETCORE_ENVIRONMENT
-        value: Production
-      - key: ConnectionStrings__DefaultConnection
-        sync: false
+    - key: ASPNETCORE_ENVIRONMENT
+      value: Production
+    - key: ConnectionStrings__DefaultConnection
+      value: "Server=productionServer;Port=3306;Database=PratasDb;Uid=user;Pwd=password;Connect Timeout=60;"
+    - key: ASPNETCORE_URLS
+      value: "http://+:8080"
+
