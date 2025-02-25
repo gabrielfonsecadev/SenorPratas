@@ -1,8 +1,8 @@
 services:
-  - name: meu-backend
+  - name: core
     type: web
     runtime: docker
-    rootDir: Back-End
+    rootDir: Core/API
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production

@@ -21,14 +21,16 @@ builder.Services.AddCors(options =>
     //APENAS PARA AMBIENTE DEV!!!
     options.AddPolicy("AllowAll", policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-
-        // //AMBIENTE DE PRODUÇÃO EXEMPLO:
-        // policy.WithOrigins("https://seusite.com", "http://localhost:3000")
-        //       .WithMethods("GET", "POST", "PUT")
-        //       .AllowCredentials();
+        // if(builder.Environment.IsDevelopment()) {
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        // }
+        // else {
+        //     policy.WithOrigins("https://senorpratas.onrender.com")
+        //         .WithMethods("GET", "POST", "PUT")
+        //         .AllowCredentials();
+        // }
     });
 });
 
@@ -36,6 +38,14 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
 //Services
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
+
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{port}");
 
 
 var app = builder.Build();
