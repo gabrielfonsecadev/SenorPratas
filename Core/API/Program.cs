@@ -17,8 +17,14 @@ string postgresConnection = builder.Configuration.GetConnectionString("DefaultCo
 
 builder.Services.AddCors(options =>
 {
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
     //APENAS PARA AMBIENTE DEV!!!
-    options.AddPolicy("Restrictions", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
         if (builder.Environment.IsDevelopment())
         {
@@ -33,11 +39,10 @@ builder.Services.AddCors(options =>
             // var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
             // builder.WebHost.UseUrls($"http://*:{port}");
 
-            policy.WithOrigins("https://senorpratas.onrender.com")
+            // policy.WithOrigins("https://senorpratas.onrender.com")
+            policy.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
-            // policy.AllowAnyOrigin()
-
             // .WithMethods("GET", "POST", "PUT", "DELETE")
             // .AllowCredentials();
         }
@@ -58,7 +63,7 @@ builder.Configuration
 
 var app = builder.Build();
 
-app.UseCors("Restrictions");
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
