@@ -1,26 +1,21 @@
-# Etapa Base - imagem para rodar a aplicação
+# Use the official ASP.NET Core runtime as a base image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
 WORKDIR /app
 EXPOSE 8080
-EXPOSE 8081
 
-# Etapa de Build - usa a imagem SDK do .NET para compilar o projeto
+# Use the official .NET SDK image to build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-# Copia o arquivo .csproj para o container (assumindo que ele está na mesma pasta do Dockerfile)
 COPY ["Pratas.csproj", "./"]
 RUN dotnet restore "Pratas.csproj"
-# Copia o restante do código
 COPY . .
-RUN dotnet build "Pratas.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Pratas.csproj" -c Release -o /app/build
 
-# Etapa de Publicação - publica o projeto
+# Publish the application
 FROM build AS publish
-RUN dotnet publish "Pratas.csproj" -c $BUILD_CONFIGURATION -o /app/publish
+RUN dotnet publish "Pratas.csproj" -c Release -o /app/publish
 
-# Etapa Final - imagem final para rodar a aplicação
+# Final stage/image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

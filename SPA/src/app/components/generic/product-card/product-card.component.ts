@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -14,10 +15,9 @@ export class ProductCardComponent {
   hover: boolean = false;
   hoveredImageId: number | null = null;
 
-  constructor() {
+  constructor(private router: Router,) {
 
   }
-
 
   getImagePath(imagens: any, isHover: boolean, id: number): string {
     if (isHover) {
@@ -28,5 +28,9 @@ export class ProductCardComponent {
       const coverImage = imagens.find((img: any) => img.ordem === 1);
       return coverImage ? coverImage.url : '';
     }
+  }
+
+  navigateToProduct(id: number): void {
+    this.router.navigate(['/product', id]);
   }
 }

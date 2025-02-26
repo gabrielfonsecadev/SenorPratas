@@ -1,6 +1,7 @@
 <!-- <div class="pb-10 px-3" [ngClass]="{ 'card-size' : type !== 'carousel' }"> -->
 <div class="pb-10 px-3">
-  <div (mouseenter)="hoveredImageId = product.id" (mouseleave)="hoveredImageId = null" class="image-container">
+  <div (mouseenter)="hoveredImageId = product.id" (mouseleave)="hoveredImageId = null"
+    class="image-container cursor-pointer" (click)="navigateToProduct(product.id)">
 
     <img [src]="getImagePath(product.imagens, false, product.id)" alt="Imagem do produto"
       class="rounded-sm object-cover transition-opacity duration-300"
@@ -19,7 +20,8 @@
     <hr class="my-2">
     <p class="text-sm">Ou em {{product.precoParcelado}} sem juros</p>
 
-    <button class="uppercase bg-color w-full mt-4 p-3 text-white rounded-sm font-bold">
+    <button class="uppercase bg-color w-full mt-4 p-3 text-white rounded-sm font-bold"
+      (click)="navigateToProduct(product.id)">
       Comprar Agora
     </button>
   </div>

@@ -17,8 +17,8 @@ export class CarouselComponent {
   currentIndex: number = 0;
 
   imagePaths = [
-    'https://www.pratafina.com.br/upload/banner/4580e8c8fde95df56d4064fb6a5c7513.webp',
     'https://www.pratafina.com.br/upload/banner/2ef998a21d06a7b6c5cbbce0a4289607.webp',
+    'https://www.pratafina.com.br/upload/banner/4580e8c8fde95df56d4064fb6a5c7513.webp',
     'https://www.pratafina.com.br/upload/banner/ac037818a86543dcfc7e8f60e7b572e2.webp',
   ];
 

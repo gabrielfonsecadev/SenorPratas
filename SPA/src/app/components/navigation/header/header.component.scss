@@ -44,3 +44,21 @@
     visibility: visible;
   }
 }
+
+.mainContainer {
+  max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 1280px) {
+  .mainContainer {
+    max-width: 90vw;
+  }
+}
+
+@media (max-width: 1080px) {
+  .mainContainer {
+    max-width: 95vw;
+  }
+}

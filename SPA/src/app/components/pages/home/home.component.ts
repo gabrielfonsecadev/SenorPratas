@@ -28,8 +28,11 @@ export class HomeComponent implements OnInit {
     autoplay: false,
     infinite: false,
     arrows: true,
+
     nextArrow: '<div style=\'position: absolute; top: 35%; right: 1%; cursor: pointer;\' class=\'next-slide\'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg></div>',
+
     prevArrow: '<div style=\'position: absolute; top: 35%; left: 1%; z-index: 1; cursor: pointer;\' class=\'next-slide\'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg></div>',
+
     centerMode: false,
     centerPadding: '20px',
     responsive: [

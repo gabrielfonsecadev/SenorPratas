@@ -13,31 +13,37 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(opt => opt.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+string postgresConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddCors(options =>
 {
     //APENAS PARA AMBIENTE DEV!!!
     options.AddPolicy("AllowAll", policy =>
     {
-        if(builder.Environment.IsDevelopment()) {
+        if (builder.Environment.IsDevelopment())
+        {
+            postgresConnection = builder.Configuration.GetConnectionString("DevelopmentConnection");
+
             policy.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         }
-        else {
+        else
+        {
             // var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
             // builder.WebHost.UseUrls($"http://*:{port}");
 
-            policy.WithOrigins("https://senorpratas.onrender.com")
+            // policy.WithOrigins("https://senorpratas.onrender.com")
+            policy.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader();
-                // .WithMethods("GET", "POST", "PUT", "DELETE")
-                // .AllowCredentials();
+            // .WithMethods("GET", "POST", "PUT", "DELETE")
+            // .AllowCredentials();
         }
     });
 });
+
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseNpgsql(postgresConnection));
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 
@@ -49,13 +55,18 @@ builder.Configuration
     .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
     .AddEnvironmentVariables();
 
-
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+// app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.ConfigureExceptionHandler();
+}
+else
 {
     app.UseSwagger();
     app.UseSwaggerUI();

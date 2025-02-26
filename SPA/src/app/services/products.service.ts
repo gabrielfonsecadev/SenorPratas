@@ -12,6 +12,15 @@ export class ProductsService {
 
   constructor(private _httpClient: HttpClient) { }
 
+  get(id: number) {
+    return this._httpClient.get(`${this.baseUrl}/${id}`).pipe(
+      catchError(error => {
+        console.error(error);
+        return throwError(() => new Error(error));
+      })
+    );
+  }
+
   list() {
     return this._httpClient.get(`${this.baseUrl}`).pipe(
       catchError(error => {

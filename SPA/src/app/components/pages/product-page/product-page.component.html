@@ -1,0 +1,120 @@
+<main class="universalContainer mx-auto p-4 mt-14">
+  <div class="flex flex-col md:flex-row gap-3">
+    <!-- Área de imagens -->
+    <section class="md:w-2/4 flex justify-end">
+      <div *ngIf="product?.imagens?.length > 0" class="flex flex-row gap-4">
+        <!-- Miniaturas -->
+        <div class="flex flex-col gap-2">
+          <ng-container *ngFor="let img of product.imagens">
+            <img [src]="img.url" [alt]="product.nome"
+              class="max-lg:w-14 sm:max-lg:h-14 w-16 h-16 object-cover rounded cursor-pointer border hover:border-black"
+              (click)="selectImage(img.url)" [ngClass]="img.url === selectedImage ? 'border-black' : ''" />
+          </ng-container>
+        </div>
+
+        <!-- Exibe a imagem principal -->
+        <div class="flex-1 max-w-[580px]">
+          <img [src]="selectedImage" [alt]="product.nome" class="w-full h-auto object-cover rounded">
+        </div>
+      </div>
+    </section>
+
+    <!-- Área de detalhes do produto -->
+    <section class="md:w-2/4 ml-5">
+      <div *ngIf="product" class="max-w-[80%]">
+        <!-- Nome e descrição -->
+        <h1 class="text-3xl font-semibold mb-6 mt-0 pb-0">{{ product?.nome }}</h1>
+
+        <!-- Preço e parcelamento -->
+        <p class="font-semibold text-2xl mb-4">
+          R$ {{ product?.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2,
+          maximumFractionDigits: 2 }) }}
+        </p>
+        <small class="text-[0.9rem] mb-4">
+          Ou em
+          {{ product.precoParcelado }}
+        </small>
+
+        <!-- Linha divisória -->
+        <div class="linha"></div>
+
+        <div>
+          <h2 class="font-semibold p-0 m-0">Tamanho:</h2>
+          <ng-container *ngIf="product?.tamanhos">
+            <button *ngFor="let tamanho of product.tamanhos.split(',')" (click)="selectSize(tamanho)"
+              class="text-sm inline-block px-4 py-2 border mt-2 mr-4 cursor-pointer hover:border-black"
+              [ngClass]="tamanho === size ? 'border-black' : 'border-gray-300'">
+              {{ tamanho.trim() + ' centímetros' }}
+            </button>
+          </ng-container>
+        </div>
+
+        <div class="flex items-center border border-gray-300 rounded-sm overflow-hidden max-w-[130px] mt-6">
+          <!-- Botão de subtração -->
+          <button (click)="decrement()" class="px-3 py-2 text-xl font-bold hover:bg-gray-100 focus:outline-none">
+            –
+          </button>
+
+          <!-- Input sem os spinners -->
+          <input type="number" name="Quantidade" [(ngModel)]="quantidade" placeholder="Quantidade"
+            class="w-full text-center p-2 appearance-none focus:outline-none">
+
+          <!-- Botão de adição -->
+          <button (click)="increment()" class="px-3 py-2 text-xl font-bold hover:bg-gray-100 focus:outline-none">
+            +
+          </button>
+        </div>
+
+        <button class="uppercase bg-color w-full mt-4 p-3 text-white rounded-sm font-bold">
+          Comprar Agora
+        </button>
+
+        <!-- Linha divisória -->
+        <div class="linha"></div>
+
+        <div class="flex flex-row mt-5 gap-2">
+          <p class="self-center">CEP:</p>
+          <input type="text" name="CEP" [(ngModel)]="cep" mask="00000-000"
+            class="text-center p-2 appearance-none focus:outline-none border border-gray-300 max-w-[140px]">
+
+          <button class="px-3 py-2 text-white bg-color hover:bg-zinc-500 focus:outline-none">
+            CALCULAR
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="botao w-full mt-24 flex flex-col justify-center">
+    <div class="flex flex-row justify-center gap-2 mb-10 text-zinc-600 hover:text-black">
+      <div class="mx-5">
+        <button class="px-3 py-2 focus:outline-none w-[100px]" (click)="menuToggle = 'Descrição'"
+          [ngClass]="menuToggle === 'Descrição' ? 'text-black font-semibold' : ''">
+          Descrição
+        </button>
+        <div class="linha" [ngClass]="menuToggle === 'Descrição' ? 'linha-ativa' : ''"></div>
+      </div>
+
+      <div class="mx-5">
+        <button class="px-3 py-2 focus:outline-none w-[100px]" (click)="menuToggle = 'Garantia'"
+          [ngClass]="menuToggle === 'Garantia' ? 'text-black font-semibold' : ''">
+          Garantia
+        </button>
+        <div class="linha" [ngClass]="menuToggle === 'Garantia' ? 'linha-ativa' : ''"></div>
+      </div>
+    </div>
+
+    <div>
+      <p class="p-4" *ngIf="menuToggle === 'Descrição'">
+        <!-- {{ product?.descricao }} -->
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.
+      </p>
+
+      <p class="p-4" *ngIf="menuToggle === 'Garantia'">
+        <!-- {{ product?.descricao }} -->
+        Garantia lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.
+      </p>
+    </div>
+  </div>
+
+</main>

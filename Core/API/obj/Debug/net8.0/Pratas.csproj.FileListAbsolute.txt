@@ -127,8 +127,6 @@ c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.
 c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
 c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Microsoft.OpenApi.dll
 c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Mono.TextTemplating.dll
-c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\MySqlConnector.dll
-c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
 c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 c:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -215,3 +213,5 @@ c:\Projetos\SenorPratas\Core\API\obj\Debug\net8.0\Pratas.pdb
 c:\Projetos\SenorPratas\Core\API\obj\Debug\net8.0\Pratas.genruntimeconfig.cache
 c:\Projetos\SenorPratas\Core\API\obj\Debug\net8.0\ref\Pratas.dll
 C:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\AutoMapper.dll
+C:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Npgsql.dll
+C:\Projetos\SenorPratas\Core\API\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

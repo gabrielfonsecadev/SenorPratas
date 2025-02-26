@@ -37,18 +37,20 @@ export class SearchPageComponent {
     this.loadProducts();
     this.loadGender();
     this.loadCategory();
+
+    this.route.queryParamMap.subscribe(params => {
+      this.searchQuery = params.get('q') || '';
+      this.loadProducts();
+    });
   }
 
   private loadProducts() {
     this.productsService.list().subscribe(res => {
       this.allProducts = res as [];
 
-      this.route.queryParamMap.subscribe(params => {
-        this.searchQuery = params.get('q') || '';
-        this.applyFilters();
-        this.sortProducts();
-        this.calculateMaxPrice(this.allProducts);
-      });
+      this.applyFilters();
+      this.sortProducts();
+      this.calculateMaxPrice(this.allProducts);
     });
   }
 
@@ -79,6 +81,11 @@ export class SearchPageComponent {
   }
 
   private calculateMaxPrice(products: any[]) {
+    if (products.length === 0) {
+      this.maxPrice = 0;
+      this.selectedPrice = 0;
+      return;
+    }
     this.maxPrice = Math.max(...products.map(p => p.preco)) + 1;
     this.selectedPrice = this.maxPrice;
   }

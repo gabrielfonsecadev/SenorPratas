@@ -8,12 +8,18 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { FormsModule } from '@angular/forms';
+import { ProductPageComponent } from './product-page/product-page.component';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask'
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     HomeComponent,
     CollectionsComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    ProductPageComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +27,14 @@ import { FormsModule } from '@angular/forms';
     ProductCardComponent,
     SlickCarouselModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+    MatTabsModule,
+    BrowserAnimationsModule,
+  ],
+  providers: [
+    provideNgxMask(),
   ]
 })
 export class PagesModule { }

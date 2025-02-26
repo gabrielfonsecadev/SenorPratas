@@ -2,9 +2,11 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/pages/home/home.component';
 import { CollectionsComponent } from './components/pages/collections/collections.component';
 import { SearchPageComponent } from './components/pages/search-page/search-page.component';
+import { ProductPageComponent } from './components/pages/product-page/product-page.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+
   {
     path: 'collections',
     children: [
@@ -18,5 +20,8 @@ export const routes: Routes = [
       }
     ]
   },
+
   { path: 'search', component: SearchPageComponent },
+
+  { path: 'product/:id', component: ProductPageComponent },
 ];
